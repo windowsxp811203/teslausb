@@ -29,17 +29,17 @@ function error_exit {
 function flash_rapidly {
   for led in /sys/class/leds/*
   do 
-    if [ -e "$led/trigger" ]
+    if [ -e "$led/trigger" ] && [ -w "$led/trigger" ]
     then
-      if ! grep -q timer "$led/trigger"
+      if ! grep -q timer "$led/trigger" 2>/dev/null
       then
-        modprobe ledtrig-timer || echo "timer LED trigger unavailable"
+        modprobe ledtrig-timer 2>/dev/null || echo "timer LED trigger unavailable"
       fi
-      echo timer > "$led/trigger" || true
-      if [ -e "$led/delay_off" ]
+      echo timer > "$led/trigger" 2>/dev/null || true
+      if [ -e "$led/delay_off" ] && [ -w "$led/delay_off" ]
       then
-        echo 150 > "$led/delay_off" || true
-        echo 50 > "$led/delay_on" || true
+        echo 150 > "$led/delay_off" 2>/dev/null || true
+        echo 50 > "$led/delay_on" 2>/dev/null || true
       fi
     fi
   done

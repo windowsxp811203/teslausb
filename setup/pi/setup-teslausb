@@ -183,7 +183,7 @@ function headless_setup_mark_setup_success () {
 function flash () {
   local ON=0
   local OFF=1
-  if isPi4 || isPi5
+  if isPi4 || isPi5 || isCM5
   then
     ON=1
     OFF=0
@@ -630,7 +630,7 @@ function diagnose {
       echo "archive method: ${ARCHIVE_SYSTEM:-unset}"
     fi
 
-    if [[ "$DATA_DRIVE" != "" ]] && (isPi4 || isPi5)
+    if [[ "$DATA_DRIVE" != "" ]] && (isPi4 || isPi5 || isCM5)
     then
       echo "DATA_DRIVE=$DATA_DRIVE: consider booting from USB instead."
     fi
@@ -870,10 +870,12 @@ fi
 # from pre-setup.
 for led in /sys/class/leds/*
 do
-  if [ -e "$led/trigger" ]
+  if [ -e "$led/trigger" ] && [ -w "$led/trigger" ]
   then
-    echo none > "$led/trigger" || true
-    echo 1 > "$led/brightness" || true
+    echo none > "$led/trigger" 2>/dev/null || true
+    if [ -w "$led/brightness" ]; then
+      echo 1 > "$led/brightness" 2>/dev/null || true
+    fi
   fi
 done
 

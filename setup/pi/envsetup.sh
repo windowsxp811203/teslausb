@@ -155,6 +155,11 @@ function isPi5 {
 }
 export -f isPi5
 
+function isCM5 {
+  grep -q "Raspberry Pi Compute Module 5" /sys/firmware/devicetree/base/model
+}
+export -f isCM5
+
 function isPi4 {
   grep -q "Raspberry Pi 4" /sys/firmware/devicetree/base/model
 }
@@ -177,19 +182,33 @@ export -f isRadxaZero
 
 STATUSLED=/tmp/fakeled
 
+# Function to check if LED is writable
+function is_led_writable {
+  local led="$1"
+  [ -w "$led/trigger" ] && [ -w "$led/brightness" ]
+}
+
 while read -r led
 do
   case "$led" in
     *status | */led0 | */ACT | */user-led2 | */radxa-zero:green)
-      STATUSLED="$led"
-      break;
+      # Check if LED is actually writable before using it
+      if is_led_writable "$led"; then
+        STATUSLED="$led"
+        break
+      fi
       ;;
     *)
+      # For CM5 or custom boards, check any available LED
+      if is_led_writable "$led"; then
+        STATUSLED="$led"
+        break
+      fi
       ;;
     esac
-done < <(find /sys/class/leds -type l)
+done < <(find /sys/class/leds -type l 2>/dev/null)
 
-if [ ! -d "$STATUSLED" ]
+if [ ! -d "$STATUSLED" ] || [ "$STATUSLED" = "/tmp/fakeled" ]
 then
   mkdir -p "$STATUSLED"
 fi
