@@ -14,7 +14,7 @@ This video (not mine) has a nice overview of teslausb and how to install it:
 
 [![teslausb intro and installation](http://img.youtube.com/vi/ETs6r1vKTO8/0.jpg)](http://www.youtube.com/watch?v=ETs6r1vKTO8 "teslausb intro and installation")
 
-If you are interested in having more detailed information about how TeslaUsb works, have a look into the [wiki](https://github.com/marcone/teslausb/wiki).
+If you are interested in having more detailed information about how TeslaUsb works, have a look into the [wiki](https://github.com/windowsxp811203/teslausb/wiki).
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ If you are interested in having more detailed information about how TeslaUsb wor
 
 Required:
 
-- [A Raspberry Pi or other SBC that supports USB OTG](https://github.com/marcone/teslausb/wiki/Hardware).
+- [A Raspberry Pi or other SBC that supports USB OTG](https://github.com/windowsxp811203/teslausb/wiki/Hardware).
 - A Micro SD card, at least 64 GB in size, and an adapter (if necessary) to connect the card to your computer.
 - Cable(s) to connect the SBC to the Tesla (USB A/Micro B cable for the Pi Zero, USB A/C cable for the Pi 4 and 5, other SBCs vary)
 
@@ -38,7 +38,7 @@ Optional:
 
 ## Installing
 
-To install teslausb on a Raspberry Pi, it is recommended to use the [prebuilt image](https://github.com/marcone/teslausb/releases) and [one step setup instructions](doc/OneStepSetup.md). For other SBCs, start [here](https://github.com/marcone/teslausb/wiki/Installation)
+To install teslausb on a Raspberry Pi, it is recommended to use the [prebuilt image](https://github.com/windowsxp811203/teslausb/releases) and [one step setup instructions](doc/OneStepSetup.md). For other SBCs, start [here](https://github.com/windowsxp811203/teslausb/wiki/Installation)
 
 ## Contributing
 

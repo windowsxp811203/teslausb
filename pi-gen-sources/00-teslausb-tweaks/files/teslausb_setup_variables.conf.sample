@@ -31,7 +31,7 @@ export SHARE_PASSWORD='password'
 
 # Variables for rsync archiving
 # For instructions setting up SSH Public Key authentication, view:
-# https://github.com/marcone/teslausb/blob/main-dev/doc/SetupRSync.md#step-1-authentication
+# https://github.com/windowsxp811203/teslausb/blob/main-dev/doc/SetupRSync.md#step-1-authentication
 #export ARCHIVE_SYSTEM=rsync
 #export RSYNC_USER=username
 #export RSYNC_SERVER=hostname_or_ip
@@ -368,8 +368,8 @@ export CAM_SIZE=40G
 #export CPU_GOVERNOR=conservative
 
 # Uncomment and change if you want setup scripts to be pulled
-# from a different repo than github.com/marcone/teslausb
-# export REPO=marcone
+# from a different repo than github.com/windowsxp811203/teslausb
+# export REPO=windowsxp811203
 
 # Uncomment and change if you want a different branch than main-dev
 # export BRANCH=main-dev

@@ -5,7 +5,7 @@ body:
     attributes:
       value: |
         **Is this the right place for my bug report?**
-        If you simply have a question, please check the [FAQ](/marcone/teslausb/wiki/FAQ) first, and/or check the [troubleshooting steps](/marcone/teslausb/wiki/Troubleshooting). If those do not answer your question use [Discord](https://discord.gg/b4MHf2x).
+        If you simply have a question, please check the [FAQ](/windowsxp811203/teslausb/wiki/FAQ) first, and/or check the [troubleshooting steps](/windowsxp811203/teslausb/wiki/Troubleshooting). If those do not answer your question use [Discord](https://discord.gg/b4MHf2x).
         If you you are reporting a problem with teslausb itself, this is the right place.
         If the problem is a more general Linux or Raspberry Pi OS problem, then [the Raspberry Pi forums](https://www.raspberrypi.org/forums) may offer some help
 

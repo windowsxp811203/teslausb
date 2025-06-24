@@ -28,7 +28,7 @@ else
         http_response=$(curl -s -w "%{http_code}" \
           -H "Authorization: Bearer $TESSIE_API_TOKEN" \
           -H "Accept: application/json" \
-          -H "User-Agent: github.com/marcone/teslausb" \
+          -H "User-Agent: github.com/windowsxp811203/teslausb" \
           "https://api.tessie.com/$TESSIE_VIN/command/enable_sentry")
 
         log "Tessie: Command sent to enable Sentry Mode."
