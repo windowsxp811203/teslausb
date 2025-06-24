@@ -42,7 +42,9 @@ SETUP_LOGFILE=/teslausb/teslausb-headless-setup.log
 function write_all_leds {
   for led in /sys/class/leds/*
   do
-    echo "$1" > "$led/$2" || true
+    if [ -w "$led/$2" ]; then
+      echo "$1" > "$led/$2" 2>/dev/null || true
+    fi
   done
 }
 
@@ -51,10 +53,10 @@ function error_strobe() {
   write_all_leds timer trigger
   while true
   do
-    write_all_leds 1 delay_on
-    write_all_leds 100 delay_off
+    write_all_leds 1 delay_on 2>/dev/null || true
+    write_all_leds 100 delay_off 2>/dev/null || true
     sleep 1
-    write_all_leds 0 delay_on
+    write_all_leds 0 delay_on 2>/dev/null || true
     sleep 1
   done
 }
