@@ -53,11 +53,16 @@ marker="/root/RESIZE_ATTEMPTED"
 # Check that the root partition is the last one.
 lastpart=$(sfdisk -q -l "$rootdev" | tail +2 | sort -n -k 2 | tail -1 | awk '{print $1}')
 
-# Check if there is sufficient unpartitioned space after the last
-# partition to create the backingfiles and mutable partitions.
-unpart=$(sfdisk -F "$rootdev" | grep -o '[0-9]* bytes' | head -1 | awk '{print $1}')
-if [ "${1:-}" != "norootshrink" ] && [ "$unpart" -lt  $(( (1<<30) * 32)) ]
+# Check if TeslaUSB partitions already exist
+if [ -e /dev/disk/by-label/backingfiles ] && [ -e /dev/disk/by-label/mutable ]
 then
+  echo "TeslaUSB partitions already exist, skipping partition creation"
+else
+  # Check if there is sufficient unpartitioned space after the last
+  # partition to create the backingfiles and mutable partitions.
+  unpart=$(sfdisk -F "$rootdev" | grep -o '[0-9]* bytes' | head -1 | awk '{print $1}')
+  if [ "${1:-}" != "norootshrink" ] && [ "$unpart" -lt  $(( (1<<30) * 32)) ]
+  then
   # This script will only shrink the root partition, and if there's another
   # partition following the root partition, we won't be able to grow the
   # unpartitioned space at the end of the disk by shrinking the root partition.
@@ -140,6 +145,7 @@ then
 
   reboot
   exit 0
+fi
 fi
 
 # Copy the sample config file from github
